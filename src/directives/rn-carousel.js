@@ -390,7 +390,6 @@
                 });
               }
 
-
               if (iAttributes.rnCarouselControls !== undefined) {
                 // dont use a directive for this
                 var canloop = ((isRepeatBased ? scope[repeatCollection.replace('::', '')].length : currentSlides.length) > 1) ? angular.isDefined(tAttributes['rnCarouselControlsAllowLoop']) : false;
