@@ -1,6 +1,6 @@
 /**
  * Angular Carousel - Mobile friendly touch carousel for AngularJS
- * @version v0.3.13 - 2015-06-15
+ * @version v0.3.13 - 2015-09-10
  * @link http://revolunet.github.com/angular-carousel
  * @author Julien Bouquillon <julien@revolunet.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -52,25 +52,6 @@ angular.module('angular-carousel')
 
 angular.module('angular-carousel')
 
-.directive('rnCarouselIndicators', ['$parse', function($parse) {
-  return {
-    restrict: 'A',
-    scope: {
-      slides: '=',
-      index: '=rnCarouselIndex'
-    },
-    templateUrl: 'carousel-indicators.html',
-    link: function(scope, iElement, iAttributes) {
-      var indexModel = $parse(iAttributes.rnCarouselIndex);
-      scope.goToSlide = function(index) {
-        indexModel.assign(scope.$parent.$parent, index);
-      };
-    }
-  };
-}]);
-
-angular.module('angular-carousel')
-
   .directive('rnCarouselDefaultIndex', ['$parse', function ($parse) {
     return {
       restrict: 'A',
@@ -90,6 +71,24 @@ angular.module('angular-carousel')
       }
     };
   }]);
+angular.module('angular-carousel')
+
+.directive('rnCarouselIndicators', ['$parse', function($parse) {
+  return {
+    restrict: 'A',
+    scope: {
+      slides: '=',
+      index: '=rnCarouselIndex'
+    },
+    templateUrl: 'carousel-indicators.html',
+    link: function(scope, iElement, iAttributes) {
+      var indexModel = $parse(iAttributes.rnCarouselIndex);
+      scope.goToSlide = function(index) {
+        indexModel.assign(scope.$parent.$parent, index);
+      };
+    }
+  };
+}]);
 
 angular.module('angular-carousel').run(['$templateCache', function($templateCache) {
   $templateCache.put('carousel-indicators.html',
@@ -533,7 +532,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                     offset -= 100;
                   } else {
                     $(nodes[currentSlides.length - 1]).after($(nodes[0]));
-                    scope.carouselIndex = 2;//??????
+                    scope.carouselIndex = currentSlides.length-2;//??????
                     destination--;
                     offset += 100;
                   }
@@ -709,7 +708,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                 }
 
                 if (iAttributes.rnCarouselSwipeEnd != undefined) {
-                  scope.$emit("swipeEndEvent", {'pageIndex': infiniteContentIndex, 'caIndex': scope.carouselIndex});
+                  scope.$emit("swipeEndEvent", {'pageIndex': infiniteContentIndex, 'caIndex': scope.carouselIndex, 'direction': moveOffset });
                   console.log("=========>>>> SwipeEnd ");
                 }
               }

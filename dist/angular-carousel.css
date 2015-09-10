@@ -7,15 +7,13 @@ ul[rn-carousel] {
   white-space: nowrap;
   position: relative;
   -webkit-perspective: 1000px;
-  -ms-perspective: 1000px;
-  perspective: 1000px;
+          perspective: 1000px;
   -ms-touch-action: pan-y;
   touch-action: pan-y; }
   ul[rn-carousel] > li {
     color: black;
     -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
+            backface-visibility: hidden;
     overflow: visible;
     vertical-align: top;
     position: absolute;
@@ -46,7 +44,7 @@ div.rn-carousel-indicator span {
 /* prev/next controls */
 .rn-carousel-control {
   -webkit-transition: opacity 0.2s ease-out;
-  transition: opacity 0.2s ease-out;
+          transition: opacity 0.2s ease-out;
   font-size: 2rem;
   position: absolute;
   top: 40%;

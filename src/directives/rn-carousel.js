@@ -432,7 +432,7 @@
                     offset -= 100;
                   } else {
                     $(nodes[currentSlides.length - 1]).after($(nodes[0]));
-                    scope.carouselIndex = 2;//??????
+                    scope.carouselIndex = currentSlides.length-2;//??????
                     destination--;
                     offset += 100;
                   }
@@ -608,7 +608,7 @@
                 }
 
                 if (iAttributes.rnCarouselSwipeEnd != undefined) {
-                  scope.$emit("swipeEndEvent", {'pageIndex': infiniteContentIndex, 'caIndex': scope.carouselIndex});
+                  scope.$emit("swipeEndEvent", {'pageIndex': infiniteContentIndex, 'caIndex': scope.carouselIndex, 'direction': moveOffset });
                   console.log("=========>>>> SwipeEnd ");
                 }
               }
