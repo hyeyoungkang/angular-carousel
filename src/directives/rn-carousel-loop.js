@@ -1,12 +1,11 @@
 (function() {
     "use strict";
 
-    angular.module('angular-carousel')
+    angular.module('angular-carousel-loop')
 
     .service('DeviceCapabilities', function() {
 
         // TODO: merge in a single function
-
         // detect supported CSS property
         function detectTransformProperty() {
             var transformProperty = 'transform',
@@ -119,7 +118,8 @@
         };
     })
 
-     .directive('rnCarousel', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
+
+     .directive('rnCarouselLoop', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
       function ($swipe, $window, $document, $parse, $compile, $timeout, $interval, computeCarouselSlideStyle, createStyleString, Tweenable) {
         // internal ids to allow multiple instances
         var carouselId = 0,
@@ -219,6 +219,8 @@
                 chkValueInfiniteLoop = 0,
                 infiniteContentIndex = 0,
                 infiniteLoop = (iAttributes.rnCarouselInfiniteLoop != undefined) || false;
+
+              $(iElement[0]).addClass("rn-carousel-slides");
 
               //rn-swipe-disabled =true will only disable swipe events
               if (iAttributes.rnSwipeDisabled !== "true") {
@@ -360,6 +362,12 @@
                 elX = iElement[0].querySelector('li').getBoundingClientRect().left;
                 pressed = true;
                 startX = coords.x;
+
+                scope.$emit("swipeStartEvent", {
+                  'pageIndex': infiniteContentIndex,
+                  'caIndex': scope.carouselIndex
+                });
+
                 return false;
               }
 
@@ -606,10 +614,11 @@
                   });
                 }
 
-                if (iAttributes.rnCarouselSwipeEnd != undefined) {
-                  scope.$emit("swipeEndEvent", {'pageIndex': infiniteContentIndex, 'caIndex': scope.carouselIndex, 'direction': moveOffset });
-                  console.log("=========>>>> SwipeEnd ");
-                }
+                scope.$emit("swipeEndEvent", {
+                  'pageIndex': infiniteContentIndex,
+                  'caIndex': scope.carouselIndex,
+                  'direction': moveOffset
+                });
               }
 
               scope.$on('$destroy', function () {

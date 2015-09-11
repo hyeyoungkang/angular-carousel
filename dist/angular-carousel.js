@@ -1,10 +1,23 @@
 /**
  * Angular Carousel - Mobile friendly touch carousel for AngularJS
- * @version v0.5.0 - 2015-09-11
+ * @version v0.5.0 - 2015-09-18
  * @link http://revolunet.github.com/angular-carousel
  * @author Julien Bouquillon <julien@revolunet.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
+/*global angular */
+
+/*
+Angular touch carousel with CSS GPU accel and slide buffering
+http://github.com/revolunet/angular-carousel
+
+*/
+
+angular.module('angular-carousel-loop', [
+    'ngTouch',
+    'angular-carousel-loop.shifty'
+]);
+
 /*global angular */
 
 /*
@@ -18,7 +31,7 @@ angular.module('angular-carousel', [
     'angular-carousel.shifty'
 ]);
 
-angular.module('angular-carousel')
+angular.module('angular-carousel-loop')
 
 .directive('rnCarouselAutoSlide', ['$interval', function($interval) {
   return {
@@ -50,7 +63,7 @@ angular.module('angular-carousel')
   };
 }]);
 
-angular.module('angular-carousel')
+angular.module('angular-carousel-loop')
 
   .directive('rnCarouselDefaultIndex', ['$parse', function ($parse) {
     return {
@@ -71,7 +84,7 @@ angular.module('angular-carousel')
       }
     };
   }]);
-angular.module('angular-carousel')
+angular.module('angular-carousel-loop')
 
 .directive('rnCarouselIndicators', ['$parse', function($parse) {
   return {
@@ -90,7 +103,7 @@ angular.module('angular-carousel')
   };
 }]);
 
-angular.module('angular-carousel').run(['$templateCache', function($templateCache) {
+angular.module('angular-carousel-loop').run(['$templateCache', function($templateCache) {
   $templateCache.put('carousel-indicators.html',
       '<div class="rn-carousel-indicator">\n' +
         '<span ng-repeat="slide in slides" ng-class="{active: $index==index}" ng-click="goToSlide($index)">●</span>' +
@@ -101,7 +114,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
 (function() {
     "use strict";
 
-    angular.module('angular-carousel')
+    angular.module('angular-carousel-loop')
 
     .service('DeviceCapabilities', function() {
 
@@ -219,7 +232,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
         };
     })
 
-     .directive('rnCarousel', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
+     .directive('rnCarouselLoop', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
       function ($swipe, $window, $document, $parse, $compile, $timeout, $interval, computeCarouselSlideStyle, createStyleString, Tweenable) {
         // internal ids to allow multiple instances
         var carouselId = 0,
@@ -319,6 +332,8 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                 chkValueInfiniteLoop = 0,
                 infiniteContentIndex = 0,
                 infiniteLoop = (iAttributes.rnCarouselInfiniteLoop != undefined) || false;
+
+              $(iElement[0]).addClass("rn-carousel-slides");
 
               //rn-swipe-disabled =true will only disable swipe events
               if (iAttributes.rnSwipeDisabled !== "true") {
@@ -460,6 +475,12 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                 elX = iElement[0].querySelector('li').getBoundingClientRect().left;
                 pressed = true;
                 startX = coords.x;
+
+                scope.$emit("swipeStartEvent", {
+                  'pageIndex': infiniteContentIndex,
+                  'caIndex': scope.carouselIndex
+                });
+
                 return false;
               }
 
@@ -706,10 +727,11 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                   });
                 }
 
-                if (iAttributes.rnCarouselSwipeEnd != undefined) {
-                  scope.$emit("swipeEndEvent", {'pageIndex': infiniteContentIndex, 'caIndex': scope.carouselIndex, 'direction': moveOffset });
-                  console.log("=========>>>> SwipeEnd ");
-                }
+                scope.$emit("swipeEndEvent", {
+                  'pageIndex': infiniteContentIndex,
+                  'caIndex': scope.carouselIndex,
+                  'direction': moveOffset
+                });
               }
 
               scope.$on('$destroy', function () {
@@ -773,7 +795,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
 
 
 
-angular.module('angular-carousel.shifty', [])
+angular.module('angular-carousel-loop.shifty', [])
 
 .factory('Tweenable', function() {
 
@@ -2180,7 +2202,7 @@ angular.module('angular-carousel.shifty', [])
 (function() {
     "use strict";
 
-    angular.module('angular-carousel')
+    angular.module('angular-carousel-loop')
 
     .filter('carouselSlice', function() {
         return function(collection, start, size) {

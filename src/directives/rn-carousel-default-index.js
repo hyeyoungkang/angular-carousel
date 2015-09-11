@@ -1,4 +1,4 @@
-angular.module('angular-carousel')
+angular.module('angular-carousel-loop')
 
   .directive('rnCarouselDefaultIndex', ['$parse', function ($parse) {
     return {

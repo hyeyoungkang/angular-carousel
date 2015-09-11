@@ -1,5 +1,5 @@
 {
-  "name": "angular-carousel",
+  "name": "angular-carousel-loop",
   "description": "Angular Carousel - Mobile friendly touch carousel for AngularJS",
   "version": "0.5.0",
   "homepage": "http://revolunet.github.com/angular-carousel",
@@ -9,7 +9,7 @@
     "url": "git@github.com:hyeyoungkang/angular-carousel.git"
   },
   "main": [
-    "dist/angular-carousel.js",
+    "dist/angular-carousel-loop.js",
     "dist/angular-carousel.css"
   ],
   "ignore": [

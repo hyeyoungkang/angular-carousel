@@ -1,4 +1,4 @@
-angular.module('angular-carousel')
+angular.module('angular-carousel-loop')
 
 .directive('rnCarouselIndicators', ['$parse', function($parse) {
   return {
@@ -17,7 +17,7 @@ angular.module('angular-carousel')
   };
 }]);
 
-angular.module('angular-carousel').run(['$templateCache', function($templateCache) {
+angular.module('angular-carousel-loop').run(['$templateCache', function($templateCache) {
   $templateCache.put('carousel-indicators.html',
       '<div class="rn-carousel-indicator">\n' +
         '<span ng-repeat="slide in slides" ng-class="{active: $index==index}" ng-click="goToSlide($index)">●</span>' +

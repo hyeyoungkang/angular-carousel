@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    angular.module('angular-carousel')
+    angular.module('angular-carousel-loop')
 
     .filter('carouselSlice', function() {
         return function(collection, start, size) {
