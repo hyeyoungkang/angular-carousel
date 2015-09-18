@@ -236,7 +236,6 @@
               function getSlidesDOM() {
                 return iElement[0].querySelectorAll('ul[rn-carousel-loop] > li');
               }
-
               function documentMouseUpEvent(event) {
                 // in case we click outside the carousel, trigger a fake swipeEnd
                 swipeMoved = true;
