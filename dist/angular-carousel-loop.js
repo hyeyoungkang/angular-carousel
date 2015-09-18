@@ -18,19 +18,6 @@ angular.module('angular-carousel-loop', [
     'angular-carousel-loop.shifty'
 ]);
 
-/*global angular */
-
-/*
-Angular touch carousel with CSS GPU accel and slide buffering
-http://github.com/revolunet/angular-carousel
-
-*/
-
-angular.module('angular-carousel', [
-    'ngTouch',
-    'angular-carousel.shifty'
-]);
-
 angular.module('angular-carousel-loop')
 
 .directive('rnCarouselAutoSlide', ['$interval', function($interval) {
@@ -117,7 +104,6 @@ angular.module('angular-carousel-loop').run(['$templateCache', function($templat
     angular.module('angular-carousel-loop')
 
     .service('DeviceCapabilities', function() {
-
         // TODO: merge in a single function
         // detect supported CSS property
         function detectTransformProperty() {

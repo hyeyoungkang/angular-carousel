@@ -51,7 +51,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['<%= dirs.src %>/*.js', '<%= dirs.src %>/**/*.js'],
-        dest: '<%= dirs.dest %>/<%= pkg.name %>-loop.js'
+        dest: '<%= dirs.dest %>/<%= pkg.name %>.js'
       }
     },
 
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['<%= concat.dist.dest %>'],
-        dest: '<%= dirs.dest %>/<%= pkg.name %>-loop.min.js'
+        dest: '<%= dirs.dest %>/<%= pkg.name %>.min.js'
       }
     },
     jshint: {

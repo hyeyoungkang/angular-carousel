@@ -4,7 +4,6 @@
     angular.module('angular-carousel-loop')
 
     .service('DeviceCapabilities', function() {
-
         // TODO: merge in a single function
         // detect supported CSS property
         function detectTransformProperty() {

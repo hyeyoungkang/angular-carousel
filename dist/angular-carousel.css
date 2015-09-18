@@ -6,14 +6,12 @@ ul[rn-carousel] {
   padding: 0;
   white-space: nowrap;
   position: relative;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
+  perspective: 1000px;
   -ms-touch-action: pan-y;
   touch-action: pan-y; }
   ul[rn-carousel] > li {
     color: black;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+    backface-visibility: hidden;
     overflow: visible;
     vertical-align: top;
     position: absolute;
@@ -43,8 +41,7 @@ div.rn-carousel-indicator span {
 
 /* prev/next controls */
 .rn-carousel-control {
-  -webkit-transition: opacity 0.2s ease-out;
-          transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
   font-size: 2rem;
   position: absolute;
   top: 40%;
@@ -60,3 +57,5 @@ div.rn-carousel-indicator span {
     right: 0.5em; }
     .rn-carousel-control.rn-carousel-control-next:before {
       content: ">"; }
+
+/*# sourceMappingURL=angular-carousel.css.map */
