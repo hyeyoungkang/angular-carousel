@@ -234,7 +234,7 @@
               }
 
               function getSlidesDOM() {
-                return iElement[0].querySelectorAll('ul[rn-carousel] > li');
+                return iElement[0].querySelectorAll('ul[rn-carousel-loop] > li');
               }
 
               function documentMouseUpEvent(event) {
