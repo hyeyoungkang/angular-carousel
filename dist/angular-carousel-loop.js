@@ -63,7 +63,7 @@ angular.module('angular-carousel-loop')
       link: function (scope, iElement, iAttributes) {
         var restartTimer = function () {
           var node_length = $(iElement[0]).children().length;
-          if (iAttributes.rnCarouselDefaultIndex == 0 || iAttributes.rnCarouselDefaultIndex == parseInt(node_length, 10) - 1) {
+          if (iAttributes.rnCarouselLoopDefaultIndex == 0 || iAttributes.rnCarouselLoopDefaultIndex == parseInt(node_length, 10) - 1) {
             scope.$parent.pageRerender();
           }
         };
@@ -294,7 +294,7 @@ angular.module('angular-carousel-loop').run(['$templateCache', function($templat
                 bufferSize: 5,
                 /* in container % how much we need to drag to trigger the slide change */
                 moveTreshold: 0.1,
-                defaultIndex: parseInt(iAttributes.rnCarouselDefaultIndex, 10) || 0
+                defaultIndex: parseInt(iAttributes.rnCarouselLoopDefaultIndex, 10) || 0
               };
 
               // TODO
@@ -497,7 +497,7 @@ angular.module('angular-carousel-loop').run(['$templateCache', function($templat
                 });
               }
 
-              if (iAttributes.rnCarouselControls !== undefined) {
+              if (iAttributes.rnCarouselLoopControls !== undefined) {
                 // dont use a directive for this
                 var canloop = ((isRepeatBased ? scope[repeatCollection.replace('::', '')].length : currentSlides.length) > 1) ? angular.isDefined(tAttributes['rnCarouselControlsAllowLoop']) : false;
                 var nextSlideIndexCompareValue = isRepeatBased ? repeatCollection.replace('::', '') + '.length - 1' : currentSlides.length - 1;
@@ -508,8 +508,8 @@ angular.module('angular-carousel-loop').run(['$templateCache', function($templat
                 iElement.parent().append($compile(angular.element(tpl))(scope));
               }
 
-              if (iAttributes.rnCarouselAutoSlide !== undefined) {
-                var duration = parseInt(iAttributes.rnCarouselAutoSlide, 10) || options.autoSlideDuration;
+              if (iAttributes.rnCarouselLoopAutoSlide !== undefined) {
+                var duration = parseInt(iAttributes.rnCarouselLoopAutoSlide, 10) || options.autoSlideDuration;
                 scope.autoSlide = function () {
                   if (scope.autoSlider) {
                     $interval.cancel(scope.autoSlider);
@@ -523,8 +523,8 @@ angular.module('angular-carousel-loop').run(['$templateCache', function($templat
                 };
               }
 
-              if (iAttributes.rnCarouselDefaultIndex != undefined) {
-                var defaultIndexModel = $parse(iAttributes.rnCarouselDefaultIndex);
+              if (iAttributes.rnCarouselLoopDefaultIndex != undefined) {
+                var defaultIndexModel = $parse(iAttributes.rnCarouselLoopDefaultIndex);
 
                 options.defaultIndex = defaultIndexModel(scope.$parent) || 0;
 

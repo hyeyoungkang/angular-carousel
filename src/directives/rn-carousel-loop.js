@@ -194,7 +194,7 @@
                 bufferSize: 5,
                 /* in container % how much we need to drag to trigger the slide change */
                 moveTreshold: 0.1,
-                defaultIndex: parseInt(iAttributes.rnCarouselDefaultIndex, 10) || 0
+                defaultIndex: parseInt(iAttributes.rnCarouselLoopDefaultIndex, 10) || 0
               };
 
               // TODO
@@ -397,7 +397,7 @@
                 });
               }
 
-              if (iAttributes.rnCarouselControls !== undefined) {
+              if (iAttributes.rnCarouselLoopControls !== undefined) {
                 // dont use a directive for this
                 var canloop = ((isRepeatBased ? scope[repeatCollection.replace('::', '')].length : currentSlides.length) > 1) ? angular.isDefined(tAttributes['rnCarouselControlsAllowLoop']) : false;
                 var nextSlideIndexCompareValue = isRepeatBased ? repeatCollection.replace('::', '') + '.length - 1' : currentSlides.length - 1;
@@ -408,8 +408,8 @@
                 iElement.parent().append($compile(angular.element(tpl))(scope));
               }
 
-              if (iAttributes.rnCarouselAutoSlide !== undefined) {
-                var duration = parseInt(iAttributes.rnCarouselAutoSlide, 10) || options.autoSlideDuration;
+              if (iAttributes.rnCarouselLoopAutoSlide !== undefined) {
+                var duration = parseInt(iAttributes.rnCarouselLoopAutoSlide, 10) || options.autoSlideDuration;
                 scope.autoSlide = function () {
                   if (scope.autoSlider) {
                     $interval.cancel(scope.autoSlider);
@@ -423,8 +423,8 @@
                 };
               }
 
-              if (iAttributes.rnCarouselDefaultIndex != undefined) {
-                var defaultIndexModel = $parse(iAttributes.rnCarouselDefaultIndex);
+              if (iAttributes.rnCarouselLoopDefaultIndex != undefined) {
+                var defaultIndexModel = $parse(iAttributes.rnCarouselLoopDefaultIndex);
 
                 options.defaultIndex = defaultIndexModel(scope.$parent) || 0;
 

@@ -11,7 +11,7 @@ angular.module('angular-carousel-loop')
       link: function (scope, iElement, iAttributes) {
         var restartTimer = function () {
           var node_length = $(iElement[0]).children().length;
-          if (iAttributes.rnCarouselDefaultIndex == 0 || iAttributes.rnCarouselDefaultIndex == parseInt(node_length, 10) - 1) {
+          if (iAttributes.rnCarouselLoopDefaultIndex == 0 || iAttributes.rnCarouselLoopDefaultIndex == parseInt(node_length, 10) - 1) {
             scope.$parent.pageRerender();
           }
         };
