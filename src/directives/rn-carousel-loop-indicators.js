@@ -1,6 +1,6 @@
 angular.module('angular-carousel-loop')
 
-.directive('rnCarouselIndicators', ['$parse', function($parse) {
+.directive('rnCarouselLoopIndicators', ['$parse', function($parse) {
   return {
     restrict: 'A',
     scope: {

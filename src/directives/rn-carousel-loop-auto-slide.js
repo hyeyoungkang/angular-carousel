@@ -1,6 +1,6 @@
 angular.module('angular-carousel-loop')
 
-.directive('rnCarouselAutoSlide', ['$interval', function($interval) {
+.directive('rnCarouselLoopAutoSlide', ['$interval', function($interval) {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {

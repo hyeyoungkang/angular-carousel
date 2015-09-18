@@ -20,7 +20,7 @@ angular.module('angular-carousel-loop', [
 
 angular.module('angular-carousel-loop')
 
-.directive('rnCarouselAutoSlide', ['$interval', function($interval) {
+.directive('rnCarouselLoopAutoSlide', ['$interval', function($interval) {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
@@ -52,7 +52,7 @@ angular.module('angular-carousel-loop')
 
 angular.module('angular-carousel-loop')
 
-  .directive('rnCarouselDefaultIndex', ['$parse', function ($parse) {
+  .directive('rnCarouselLoopDefaultIndex', ['$parse', function ($parse) {
     return {
       restrict: 'A',
       scope: {
@@ -73,7 +73,7 @@ angular.module('angular-carousel-loop')
   }]);
 angular.module('angular-carousel-loop')
 
-.directive('rnCarouselIndicators', ['$parse', function($parse) {
+.directive('rnCarouselLoopIndicators', ['$parse', function($parse) {
   return {
     restrict: 'A',
     scope: {
